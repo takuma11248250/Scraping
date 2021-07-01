@@ -2,7 +2,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
-from datetime import datetime, date, timedelta
+from datetime import datetime
 import gspread
 import json
 from oauth2client.service_account import ServiceAccountCredentials 
@@ -45,9 +45,9 @@ def search_box(job_name):
 	result_jobcnt = driver.find_element_by_xpath('/html/body/table[2]/tbody/tr/td/table/tbody/tr/td[1]/div[3]/div[4]/div[2]/div/div[1]').text
 	cut_number = result_jobcnt.find('件')
 	result_jobcnt = result_jobcnt[7:cut_number-1]
-	print (result_jobcnt)
+	print (int(result_jobcnt))
 	jobcnt_list = []
-	jobcnt_list.extend([month, job_name, result_jobcnt])
+	jobcnt_list.extend([month, job_name, int(result_jobcnt)])
 	result_jobcnt_list.append(jobcnt_list)
 	job_name = ""
 	driver.get(target_url)
